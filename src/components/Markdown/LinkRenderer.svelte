@@ -3,6 +3,6 @@
 	export let text = "";
 </script>
 
-<a class="pointer-events-auto" target="_blank" rel="noreferrer" {href}>
+<a target="_blank" class="text-blue-500 underline" rel="noreferrer" {href}>
 	{text}</a
 >

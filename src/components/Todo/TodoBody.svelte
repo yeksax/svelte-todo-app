@@ -2,10 +2,11 @@
 	import { setProperty } from "@/utils/todos";
 	import { onMount } from "svelte";
 	import Markdown from "../Markdown/Markdown.svelte";
+	import MarkdownAlt from "../Markdown/MarkdownAlt.svelte";
 	export let todo: Todo;
 
 	function resize(target: HTMLElement) {
-		target.style.height = "0px";
+		// target.style.height = "0px";
 		target.style.height = target.scrollHeight + "px";
 	}
 
@@ -27,10 +28,12 @@
 		class="text-sm box-border resize-none"
 		style="line-height: 2;"
 		id="todo-description"
-    autofocus
+		autofocus
 		on:input={handleDescription}
+		use:resize
 		value={todo.description}
 	/>
 {:else}
-	<Markdown {todo} />
+	<!-- <Markdown {todo} /> -->
+	<MarkdownAlt {todo} />
 {/if}

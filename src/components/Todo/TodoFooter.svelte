@@ -65,7 +65,7 @@
 		<div class="flex items-center gap-2">
 			<Select
 				title="Priority"
-				value={todo.priority}
+				value={String(todo.priority)}
 				values={[
 					{ label: "Ultra important", value: "0" },
 					{ label: "Important", value: "1" },
@@ -74,8 +74,7 @@
 					{ label: "Low", value: "4" },
 					{ label: "Whatever", value: "5" },
 				]}
-				action={(value) =>
-					setProperty("priority", Number(value), todo, true)}
+				action={(value) => setProperty("priority", Number(value), todo)}
 			/>
 		</div>
 	</div>

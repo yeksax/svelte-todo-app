@@ -40,12 +40,11 @@ code {
   }
 
   pre {
-    padding: .4rem .875rem;
-  }
+    code {
+      background: none;
+    }
 
-  .codeblock-pre {
-    margin-bottom: 0;
-    margin-top: .5rem;
+    padding: 0rem .5rem;
   }
 
   hr {
@@ -61,6 +60,26 @@ code {
   details {
     cursor: pointer;
     font-weight: 500;
+  }
+
+  .task-list-item {
+    position: relative;
+    padding-left: 1.75rem;
+
+    input {
+      margin: 0;
+      margin-right: .4rem;
+      width: .875rem;
+      height: .875rem;
+      position: absolute;
+      top: 50%;
+      left: .25rem;
+      transform: translateY(-50%);
+    }
+  }
+
+  .hljs {
+    padding: 0.6rem .75rem;
   }
 }
 

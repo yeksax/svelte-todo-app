@@ -5,7 +5,7 @@
 
 	function createTodo() {
 		const newTodo: Todo = {
-			id: $todos.length,
+			id: new Date().getTime(),
 			completed: false,
 			createdAt: new Date(),
 			updatedAt: new Date(),

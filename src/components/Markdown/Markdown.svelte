@@ -1,10 +1,10 @@
 <script lang="ts">
-	import SvelteMarkdown from "svelte-markdown";
-	import LinkRenderer from "./LinkRenderer.svelte";
-	import CodeRenderer from "./CodeRenderer.svelte";
-	import { setProperty } from "@/utils/todos";
-	import { EyeIcon, Maximize2Icon, MaximizeIcon } from "svelte-feather-icons";
 	import { readOnlyMode } from "@/stores";
+	import { setProperty } from "@/utils/todos";
+	import { Maximize2Icon } from "svelte-feather-icons";
+	import SvelteMarkdown from "svelte-markdown";
+	import CodeRenderer from "./CodeRenderer.svelte";
+	import LinkRenderer from "./LinkRenderer.svelte";
 
 	export let todo: Todo;
 </script>
@@ -42,7 +42,6 @@
 				: 'opacity-60'} transition-all"
 		>
 			<SvelteMarkdown
-				options={{}}
 				source={todo.description}
 				renderers={{
 					link: LinkRenderer,

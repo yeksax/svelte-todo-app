@@ -1,13 +1,14 @@
 <script lang="ts">
 	import hljs from "highlight.js";
 	import { CodeBlock } from "@skeletonlabs/skeleton";
-	import "highlight.js/styles/github-dark.css";
 	import { storeHighlightJs } from "@skeletonlabs/skeleton";
 
 	storeHighlightJs.set(hljs);
 
 	export let text: string;
 	export let lang: string;
+
+	console.log(text, lang)
 
 	let languageExists = hljs.getLanguage(lang) !== undefined;
 
