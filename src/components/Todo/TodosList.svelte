@@ -22,10 +22,11 @@
 		$sortByStore?.parameter ?? "priority",
 		$sortByStore?.order ?? "asc"
 	);
+
 	$: currentTodo = $todos.findIndex((todo) => todo.current);
 </script>
 
-<ul id="todos-list" class="flex flex-col gap-2 overflow-y-auto pr-1.5">
+<ul id="todos-list" class="flex flex-col gap-2 mt-3 pb-8">
 	{#if currentTodo !== -1}
 		<div class="pb-4">
 			<TodoElement todo={$todos[currentTodo]} />

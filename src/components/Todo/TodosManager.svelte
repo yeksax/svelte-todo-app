@@ -26,7 +26,7 @@
 	}
 </script>
 
-<div class=" flex justify-between items-center font-medium text-xs">
+<div class=" w-full flex justify-between items-center font-medium text-xs">
 	<span />
 	<!-- <Button
 		content="Delete all todos"

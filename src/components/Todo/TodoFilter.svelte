@@ -82,7 +82,7 @@
 	}
 </script>
 
-<div class="flex flex-col gap-3">
+<div class="flex flex-col gap-2">
 	<form class="relative flex items-center group">
 		<input
 			on:input={updateFilter}

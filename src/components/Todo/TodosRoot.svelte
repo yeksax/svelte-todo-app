@@ -1,7 +1,7 @@
 <script lang="ts">
 	import TodosManager from "./TodosManager.svelte";
 	import TodoList from "./TodosList.svelte";
-	import TodoSearch from "./TodoFilter.svelte";
+	import TodoFiltering from "./TodoFilter.svelte";
 
 	import { todos } from "@/stores";
 	import { onMount } from "svelte";
@@ -27,7 +27,7 @@
 		let target = e.target as HTMLElement;
 
 		if (["DIV", "HTML", "UL"].includes(target.tagName)) {
-			blurAllTodos()
+			blurAllTodos();
 		}
 	}
 
@@ -53,9 +53,10 @@
 
 <div
 	id="todos-root"
-	class="border-zinc-300 border max-h-[calc(100vh_-_4rem)] overflow-hidden rounded-lg px-6 py-5 bg-white w-[40rem] flex flex-col gap-4"
+	class="overflow-y-auto rounded-lg w-[40rem] flex flex-col gap-1"
 >
-	<TodoSearch />
-	<TodoList />
+	<TodoFiltering />
 	<TodosManager />
+
+	<TodoList />
 </div>

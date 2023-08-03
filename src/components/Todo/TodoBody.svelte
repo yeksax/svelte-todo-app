@@ -1,8 +1,7 @@
 <script lang="ts">
-	import { filter, todos } from "@/stores";
-	import Markdown from "../Markdown/Markdown.svelte";
-	import { onMount } from "svelte";
 	import { setProperty } from "@/utils/todos";
+	import { onMount } from "svelte";
+	import Markdown from "../Markdown/Markdown.svelte";
 	export let todo: Todo;
 
 	function resize(target: HTMLElement) {
