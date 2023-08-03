@@ -5,3 +5,6 @@ export const todos = writable<Todo[]>(
 	JSON.parse(localStorage.getItem("todos") ?? "[]")
 );
 export const filter = writable("");
+export const current = writable<null | Todo["id"]>(null);
+
+export const readOnlyMode = writable(false);

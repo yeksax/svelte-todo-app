@@ -7,12 +7,14 @@
 		const newTodo: Todo = {
 			id: $todos.length,
 			completed: false,
-			creationDate: new Date(),
+			createdAt: new Date(),
+			updatedAt: new Date(),
+			expanded: true,
 			description: `# Todo ${$todos.length + 1}
 
 ### use markdown :)`,
 			title: `Todo ${$todos.length + 1}`,
-			priority: 5,
+			priority: 4,
 			current: true,
 		};
 
@@ -24,11 +26,12 @@
 	}
 </script>
 
-<div class="w-full flex justify-between items-center font-medium text-xs">
-	<Button
+<div class=" flex justify-between items-center font-medium text-xs">
+	<span />
+	<!-- <Button
 		content="Delete all todos"
 		action={clearTodos}
 		className="text-red-600 border-red-600"
-	/>
+	/> -->
 	<Button content="New todo" action={createTodo} />
 </div>

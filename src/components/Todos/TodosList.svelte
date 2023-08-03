@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { todos, filter } from "@/stores";
 	import TodoElement from "./Todo.svelte";
+	import { sortBy } from "@/utils/array";
 
 	function filterTodos(todos: Todo[], filter: string) {
 		return todos.filter((todo) => {
@@ -14,17 +15,23 @@
 		});
 	}
 
-	$: filteredTodos = filterTodos($todos, $filter);
+	let currentTodo: number;
+
+	$: filteredTodos = sortBy(
+		filterTodos($todos, $filter),
+		"updatedAt",
+		"desc"
+	);
 	$: currentTodo = $todos.findIndex((todo) => todo.current);
 </script>
 
-<ul class="flex flex-col gap-2 overflow-auto pr-1.5">
+<ul id="todos-list" class="flex flex-col gap-2 overflow-y-auto pr-1.5">
 	{#if currentTodo !== -1}
 		<div class="pb-4">
-			<TodoElement todo={$todos[currentTodo]}/>
+			<TodoElement todo={$todos[currentTodo]} editing/>
 		</div>
 	{/if}
-    
+
 	{#if filteredTodos.length === 0 && $todos.length > 0}
 		<p class="pointer-events-none text-center text-zinc-400 text-sm pb-4">
 			No todos match the current filter... 🤔

@@ -5,6 +5,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  overflow: hidden;
+}
+
 * {
   font-family: Inter;
   outline: none;
@@ -23,9 +27,7 @@ html {
     font-size: 1rem;
   }
 
-  p,
-  ol,
-  ul {
+  * {
     font-size: .875rem;
 
     li {
@@ -39,6 +41,25 @@ html {
     padding: .4rem .875rem;
   }
 
+  .codeblock-pre {
+    margin-bottom: 0;
+    margin-top: .5rem;
+  }
+
+  hr {
+    margin-block: 1rem;
+  }
+
+  details,
+  summary,
+  button {
+    pointer-events: all;
+  }
+
+  details {
+    cursor: pointer;
+    font-weight: 500;
+  }
 }
 
 /* Firefox */
@@ -49,8 +70,8 @@ html {
 
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
-  width: 8px;
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 *::-webkit-scrollbar-track {
@@ -68,13 +89,13 @@ html {
 
 *::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: #A1A1AA;
+  background-color: rgb(212 212 216);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(113, 113, 122);
+  background-color: rgb(63 63 70)
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background-color: #3F3F46;
+  background-color: rgb(24 24 27);
 }
