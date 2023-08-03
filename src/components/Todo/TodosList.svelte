@@ -5,7 +5,6 @@
 
 	function filterTodos(todos: Todo[], filter: string) {
 		return todos.filter((todo) => {
-			if (todo.current) return false;
 			if (todo.title.toLowerCase().includes(filter.toLowerCase()))
 				return true;
 			if (todo.description.toLowerCase().includes(filter.toLowerCase()))
@@ -15,30 +14,20 @@
 		});
 	}
 
-	let currentTodo: number;
-
-	$: filteredTodos = sortBy(
+	$: filteredTodos = sortBy(sortBy(
 		filterTodos($todos, $filter),
 		$sortByStore?.parameter ?? "priority",
 		$sortByStore?.order ?? "asc"
-	);
-
-	$: currentTodo = $todos.findIndex((todo) => todo.current);
+	), "current", "desc");
 </script>
 
-<ul id="todos-list" class="flex flex-col gap-2 mt-3 pb-8">
-	{#if currentTodo !== -1}
-		<div class="pb-4">
-			<TodoElement todo={$todos[currentTodo]} />
-		</div>
-	{/if}
-
+<ul id="todos-list" class="flex flex-col overflow-y-auto gap-2 h-full flex-1 pb-12 pr-1.5">
 	{#if filteredTodos.length === 0 && $todos.length > 0}
 		<p class="pointer-events-none text-center text-zinc-400 text-sm pb-4">
 			No todos match the current filter... 🤔
 		</p>
 	{:else if $todos.length > 0}
-		{#each filteredTodos as todo (todo.id)}
+		{#each filteredTodos as todo}
 			<TodoElement {todo} />
 		{/each}
 	{:else}

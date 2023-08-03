@@ -13,13 +13,14 @@
 	import Select from "../Select.svelte";
 
 	export let todo: Todo;
+	export let editing = false;
 
 	function deleteTodo() {
 		todos.update((todos) => todos.filter((iTodo) => iTodo.id !== todo.id));
 	}
 
 	function setCurrent() {
-		if (todo.current) {
+		if (editing) {
 			return blurAllTodos();
 		}
 
@@ -46,15 +47,8 @@
 	{/if}
 	<div class="flex items-center gap-2">
 		{#if !$readOnlyMode}
-			{#if todo.expanded}
-				<Button
-					action={() => setProperty("expanded", false, todo, false)}
-					>Collapse <Minimize2Icon size="12" /></Button
-				>
-			{/if}
-
 			<Button action={setCurrent}>
-				{#if todo.current}
+				{#if editing}
 					Finish <XIcon size="12" />
 				{:else}
 					Edit <Edit3Icon size="12" />

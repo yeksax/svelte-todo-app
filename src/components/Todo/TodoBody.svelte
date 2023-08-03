@@ -2,8 +2,8 @@
 	import { setProperty } from "@/utils/todos";
 	import { onMount } from "svelte";
 	import Markdown from "../Markdown/Markdown.svelte";
-	import MarkdownAlt from "../Markdown/MarkdownAlt.svelte";
 	export let todo: Todo;
+	export let editing = false;
 
 	function resize(target: HTMLElement) {
 		// target.style.height = "0px";
@@ -14,16 +14,12 @@
 		let target = e.target as HTMLTextAreaElement;
 		resize(target);
 
+		todo.description = target.value;
 		setProperty("description", target.value, todo);
 	}
-
-	onMount(() => {
-		if (document.querySelector("#todo-description"))
-			resize(document.querySelector("#todo-description") as HTMLElement);
-	});
 </script>
 
-{#if todo.current}
+{#if editing}
 	<textarea
 		class="text-sm box-border resize-none"
 		style="line-height: 2;"
@@ -34,6 +30,5 @@
 		value={todo.description}
 	/>
 {:else}
-	<!-- <Markdown {todo} /> -->
-	<MarkdownAlt {todo} />
+	<Markdown {todo} />
 {/if}

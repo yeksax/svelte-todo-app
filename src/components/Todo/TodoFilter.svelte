@@ -111,6 +111,7 @@
 				values={selectableProperties}
 				value={$sortByStore?.parameter ?? "priority"}
 				action={sortByChangeHandler}
+				labelAlwaysVisible
 			>
 				{#if $sortByStore?.order === "asc"}
 					<Fa icon={faSortAmountDesc} />

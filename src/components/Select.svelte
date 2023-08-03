@@ -8,8 +8,10 @@
 	export let value: string;
 	export let values: SelectOption[];
 	export let closeOnClick: boolean = true;
+	export let labelAlwaysVisible = false;
+
 	let expanded = false;
-	let currentValue: string;
+	let currentValue: SelectOption;
 	let yTranslate = 0;
 	let xTranslate = 0;
 	let setectRef: HTMLElement;
@@ -31,11 +33,10 @@
 	}
 
 	function handleSelection(newValue: SelectOption) {
-		console.log(newValue, value);
 		action(String(newValue.value));
 		if (closeOnClick) expanded = false;
 
-		currentValue = String(newValue.label);
+		currentValue = newValue;
 	}
 
 	function toggle() {
@@ -60,10 +61,13 @@
 			: 'opacity-80'} hover:opacity-100 transition-all border-zinc-700 text-zinc-950 border rounded-sm"
 	>
 		<slot />
-		{#if currentValue}
-			{currentValue}
-		{:else}
+		{#if labelAlwaysVisible}
 			{title}
+			{#if currentValue}
+				{currentValue ? currentValue.label.toLowerCase() : ""}
+			{/if}
+		{:else}
+			{currentValue ? currentValue.label : title}
 		{/if}
 
 		<ChevronDownIcon

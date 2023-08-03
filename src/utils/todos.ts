@@ -9,7 +9,6 @@ export function setProperty(
 	// @ts-ignore
 	todo[propertyName] = value;
 	if (isUpdate) {
-		todo.expanded = true;
 		todo.updatedAt = new Date();
 	}
 

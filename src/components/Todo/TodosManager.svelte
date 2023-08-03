@@ -9,7 +9,6 @@
 			completed: false,
 			createdAt: new Date(),
 			updatedAt: new Date(),
-			expanded: true,
 			description: `# Todo ${$todos.length + 1}
 
 ### use markdown :)`,

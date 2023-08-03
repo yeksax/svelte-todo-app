@@ -1,11 +1,10 @@
 <script lang="ts">
-	import TodosManager from "./TodosManager.svelte";
 	import TodoList from "./TodosList.svelte";
-	import TodoFiltering from "./TodoFilter.svelte";
 
 	import { todos } from "@/stores";
-	import { onMount } from "svelte";
 	import { blurAllTodos } from "@/utils/todos";
+	import { onMount } from "svelte";
+	import Sidebar from "../Sidebar.svelte";
 
 	$: {
 		let currentTodo = $todos.findLastIndex((todo) => todo.current);
@@ -51,12 +50,7 @@
 	});
 </script>
 
-<div
-	id="todos-root"
-	class="overflow-y-auto rounded-lg w-[40rem] flex flex-col gap-1"
->
-	<TodoFiltering />
-	<TodosManager />
-
+<div id="todos-root" class="w-full h-[100vh] px-20 pt-12 flex gap-20">
 	<TodoList />
+	<Sidebar />
 </div>

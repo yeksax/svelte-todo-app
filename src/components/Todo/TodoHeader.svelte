@@ -6,6 +6,7 @@
 	import TodoPriority from "./TodoPriority.svelte";
 
 	let title = "";
+	export let editing = false;
 
 	$: {
 		let regex = /^# [A-Za-z0-9].*/gm;
@@ -28,13 +29,13 @@
 	export let todo: Todo;
 
 	function toggle(e: MouseEvent) {
-		e.stopImmediatePropagation()
+		e.stopImmediatePropagation();
 		setProperty("completed", !todo.completed, todo);
 	}
 </script>
 
 <div class="text-sm flex justify-between items-center gap-2">
-	{#if todo.current}
+	{#if editing}
 		<button on:click={toggle} class="h-fit w-fit">
 			<TodoPriority {todo} />
 		</button>

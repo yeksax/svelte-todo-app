@@ -8,7 +8,6 @@ interface Todo {
 	completed: boolean;
 	priority: number;
 	current: boolean;
-	expanded: boolean;
 }
 
 type TimeFormat = "short" | "normal" | "full";

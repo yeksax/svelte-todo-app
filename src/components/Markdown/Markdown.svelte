@@ -1,60 +1,45 @@
 <script lang="ts">
-	import { readOnlyMode } from "@/stores";
-	import { setProperty } from "@/utils/todos";
-	import { Maximize2Icon } from "svelte-feather-icons";
+	import "highlight.js/styles/github-dark.css";
+	import rehypeHighlight from "rehype-highlight";
+	import rehypeStringify from "rehype-stringify";
+	import remarkGfm from "remark-gfm";
+	import remarkParse from "remark-parse";
+	import remarkRehype from "remark-rehype";
+	import remarkToc from "remark-toc";
 	import SvelteMarkdown from "svelte-markdown";
-	import CodeRenderer from "./CodeRenderer.svelte";
+	import { unified } from "unified";
 	import LinkRenderer from "./LinkRenderer.svelte";
 
 	export let todo: Todo;
+	let markdown: string = "";
+
+	async function read(content: string) {
+		const res = await unified()
+			.use(remarkParse)
+			.use(remarkToc, {
+				ordered: true,
+			})
+			.use(remarkGfm)
+			.use(remarkRehype)
+			.use(rehypeHighlight, {
+				ignoreMissing: true,
+			})
+			.use(rehypeStringify)
+			.process(content);
+
+		markdown = res.toString();
+	}
+
+	$: read(todo.description);
+
+	read(todo.description);
 </script>
 
-<span class="prose" data-target="todo-description">
-	<div
-		class="{readOnlyMode
-			? ''
-			: 'pointer-events-none'} transition-all overflow-hidden relative {todo.expanded ||
-		$readOnlyMode
-			? ''
-			: 'hidden-block'}"
-	>
-		{#if !todo.expanded && !$readOnlyMode}
-			<div
-				class="absolute group grid transition-all place-items-center w-full h-full"
-			>
-				<button
-					on:click={(e) => {
-						e.preventDefault();
-						e.stopImmediatePropagation();
-						e.stopPropagation();
-
-						setProperty("expanded", true, todo, false);
-					}}
-					class="text-zinc flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-all blur-xl group-hover:blur-0 duration-300 border-zinc-200 border px-3 py-0.5 rounded-sm bg-white pointer-events-auto text-sm z-20"
-				>
-					Expand <Maximize2Icon size="12" />
-				</button>
-			</div>
-		{/if}
-		<span
-			class="{todo.expanded || $readOnlyMode
-				? ''
-				: 'opacity-60'} transition-all"
-		>
-			<SvelteMarkdown
-				source={todo.description}
-				renderers={{
-					link: LinkRenderer,
-					code: CodeRenderer,
-				}}
-			/>
-		</span>
-	</div>
-</span>
-
-<style>
-	.hidden-block {
-		max-height: 4lh;
-		pointer-events: none;
-	}
-</style>
+<div class="prose">
+	<SvelteMarkdown
+		source={markdown}
+		renderers={{
+			link: LinkRenderer,
+		}}
+	/>
+</div>
