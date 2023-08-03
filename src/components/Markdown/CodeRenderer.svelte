@@ -26,6 +26,7 @@
 <span class="pointer-events-auto" on:click={handleClick}>
 	{#if languageExists}
 		<CodeBlock
+			text="font-semibold"
 			code={text}
 			language={lang}
 			buttonCopied="Copied!"
@@ -33,6 +34,7 @@
 		/>
 	{:else}
 		<CodeBlock
+			text="font-semibold"
 			code={text}
 			language="plaintext"
 			buttonCopied="Copied!"

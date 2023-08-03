@@ -4,7 +4,6 @@
 	import { onMount } from "svelte";
 	import { setProperty } from "@/utils/todos";
 	export let todo: Todo;
-	export let editing: boolean = false;
 
 	function resize(target: HTMLElement) {
 		target.style.height = "0px";
@@ -24,7 +23,7 @@
 	});
 </script>
 
-{#if editing}
+{#if todo.current}
 	<textarea
 		class="text-sm box-border resize-none"
 		style="line-height: 2;"

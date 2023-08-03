@@ -20,10 +20,7 @@
 	>
 		{#if !todo.expanded && !$readOnlyMode}
 			<div
-				class="absolute group grid transition-all place-items-center w-full h-full {todo.expanded ||
-				$readOnlyMode
-					? ''
-					: 'hidden-block-cover'}"
+				class="absolute group grid transition-all place-items-center w-full h-full"
 			>
 				<button
 					on:click={(e) => {
@@ -39,7 +36,11 @@
 				</button>
 			</div>
 		{/if}
-		<span class="{todo.expanded || $readOnlyMode ? "" : "opacity-60"} transition-all">
+		<span
+			class="{todo.expanded || $readOnlyMode
+				? ''
+				: 'opacity-60'} transition-all"
+		>
 			<SvelteMarkdown
 				options={{}}
 				source={todo.description}
@@ -54,13 +55,7 @@
 
 <style>
 	.hidden-block {
-		max-height: 2.1lh;
+		max-height: 4lh;
 		pointer-events: none;
-	}
-
-	.hidden-block-cover {
-		-moz-box-shadow: inset 0 -10px 10px -10px rgba(255, 255, 255, 25);
-		-webkit-box-shadow: inset 0 -10px 10px -10px rgba(255, 255, 255, 25);
-		box-shadow: inset 0 -10px 10px -10px rgba(255, 255, 255, 25);
 	}
 </style>

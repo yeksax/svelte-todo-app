@@ -13,6 +13,12 @@ body {
   outline: none;
 }
 
+pre *,
+code * {
+  font-family: "JetBrains Mono" !important;
+  font-size: 0.75rem !important;
+}
+
 .prose h1 {
   font-size: 1.25rem;
 }
@@ -29,8 +35,6 @@ body {
   margin-block: 0.25rem !important;
 }
 .prose pre {
-  font-size: 0.75rem;
-  font-family: JetBrains Mono;
   padding: 0.4rem 0.875rem;
 }
 .prose .codeblock-pre {

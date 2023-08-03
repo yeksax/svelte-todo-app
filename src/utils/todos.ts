@@ -20,3 +20,11 @@ export function setProperty(
 		});
 	});
 }
+
+export function blurAllTodos() {
+	todos.update((todos) =>
+		todos.map((todo) => {
+			return { ...todo, current: false };
+		})
+	);
+}

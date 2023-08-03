@@ -5,6 +5,7 @@
 
 	import { todos } from "@/stores";
 	import { onMount } from "svelte";
+	import { blurAllTodos } from "@/utils/todos";
 
 	$: {
 		let currentTodo = $todos.findLastIndex((todo) => todo.current);
@@ -26,11 +27,7 @@
 		let target = e.target as HTMLElement;
 
 		if (["DIV", "HTML", "UL"].includes(target.tagName)) {
-			todos.update((todos) =>
-				todos.map((todo) => {
-					return { ...todo, current: false };
-				})
-			);
+			blurAllTodos()
 		}
 	}
 
@@ -56,7 +53,7 @@
 
 <div
 	id="todos-root"
-	class="border-zinc-300 border max-h-[calc(100vh_-_4rem)] overflow-hidden rounded-lg px-6 py-5 bg-white w-[40vw] flex flex-col gap-8"
+	class="border-zinc-300 border max-h-[calc(100vh_-_4rem)] overflow-hidden rounded-lg px-6 py-5 bg-white w-[40rem] flex flex-col gap-4"
 >
 	<TodoSearch />
 	<TodoList />

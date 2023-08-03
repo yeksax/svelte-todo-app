@@ -8,3 +8,5 @@ export const filter = writable("");
 export const current = writable<null | Todo["id"]>(null);
 
 export const readOnlyMode = writable(false);
+export const sortByStore = writable<FilteringOption | null>(null);
+export const groupByStore = writable<FilteringOption | null>(null);
