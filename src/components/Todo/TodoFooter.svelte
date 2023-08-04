@@ -1,26 +1,21 @@
 <script lang="ts">
 	import { readOnlyMode, todos } from "@/stores";
-	import Button from "../Button.svelte";
-	import {
-		Edit2Icon,
-		Edit3Icon,
-		EditIcon,
-		EyeOffIcon,
-		Minimize2Icon,
-		XIcon,
-	} from "svelte-feather-icons";
 	import { blurAllTodos, setProperty } from "@/utils/todos";
+	import {
+		Edit3Icon,
+		XIcon
+	} from "svelte-feather-icons";
+	import Button from "../Button.svelte";
 	import Select from "../Select.svelte";
 
 	export let todo: Todo;
-	export let editing = false;
 
 	function deleteTodo() {
 		todos.update((todos) => todos.filter((iTodo) => iTodo.id !== todo.id));
 	}
 
 	function setCurrent() {
-		if (editing) {
+		if (todo.current) {
 			return blurAllTodos();
 		}
 
@@ -48,7 +43,7 @@
 	<div class="flex items-center gap-2">
 		{#if !$readOnlyMode}
 			<Button action={setCurrent}>
-				{#if editing}
+				{#if todo.current}
 					Finish <XIcon size="12" />
 				{:else}
 					Edit <Edit3Icon size="12" />

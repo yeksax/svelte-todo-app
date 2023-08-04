@@ -50,7 +50,7 @@
 	});
 </script>
 
-<div id="todos-root" class="w-full h-[100vh] px-20 pt-12 flex gap-20">
+<div id="todos-root" class="w-full h-[100vh] px-20 pt-12 flex gap-12">
 	<TodoList />
 	<Sidebar />
 </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { todos } from "@/stores";
+	import { fly } from "svelte/transition";
 	import TodoElement from "./Todo/Todo.svelte";
 	import TodoFilter from "./Todo/TodoFilter.svelte";
 	import TodosManager from "./Todo/TodosManager.svelte";
-	import { fly } from "svelte/transition";
 
 	let currentTodo: number;
 	$: currentTodo = $todos.findIndex((todo) => todo.current);
@@ -16,8 +16,9 @@
 		<TodoFilter />
 
 		<div
-			class="transition-all h-full overflow-y-auto pr-1.5 {currentTodo !== -1
-				? 'border-2 border-zinc-950'
+			class="transition-all h-full relative overflow-y-auto pr-1.5 {currentTodo !==
+			-1
+				? 'border border-zinc-300 focus-within:border-zinc-950'
 				: ''} rounded-md"
 		>
 			{#if currentTodo !== -1}
@@ -32,6 +33,10 @@
 						noFooter
 					/>
 				</div>
+			{:else}
+				<h1 class="absolute text-sm w-full top-1/2 -translate-y-1/2 text-center font-medium text-zinc-500">
+					Double click a todo to start editing it
+				</h1>
 			{/if}
 		</div>
 
